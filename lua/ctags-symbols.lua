@@ -14,10 +14,10 @@ local function OnLineEnter()
     end
 
     -- Close the symbol buffer
-    vim.cmd("q")
+    vim.cmd.q() -- :q
 
     -- Jump to the symbol using tag
-    vim.cmd("tag " .. symbols[index])
+    vim.cmd.tag(symbols[index]) -- :tag symbol_name
 end
 
 function ShowFileSymbols()
@@ -49,7 +49,7 @@ function ShowFileSymbols()
 
     -- Open vertical split
     local width = math.floor(vim.api.nvim_win_get_width(0) / 3)
-    vim.cmd("vnew")
+    vim.cmd.vnew() -- :vnew
     vim.cmd("vertical resize " .. width)
 
     -- Set buffer-local options
