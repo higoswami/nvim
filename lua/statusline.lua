@@ -1,0 +1,2 @@
+-- Print the statusline string --
+-- :lua print(vim.o.statusline)
