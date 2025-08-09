@@ -30,6 +30,7 @@ vim.opt.undofile = true                         -- enable persistent undo
 -- ============== Behaviour ===================
 vim.opt.hidden = true                           -- Allows buffers to be hidden (default = true)
 vim.opt.autochdir = false                       -- Change vim directory on change file, buffer, window (default = false)
+vim.opt.path:append("**")                       -- include subdirectories in file search (affects :find)
 
 vim.opt.cmdheight = 2                           -- more space in the neovim command line for displaying messages
 vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
@@ -47,7 +48,7 @@ vim.opt.sidescrolloff = 8
 -- ================= UI ===============
 vim.opt.numberwidth = 4                         -- set number column width to 2 {default 4}
 vim.opt.showmode = true                         -- we don't need to see things like -- INSERT -- anymore (set to false)
-vim.opt.showtabline = 0                         -- (set to 2 to always display)
+vim.opt.showtabline = 1                         -- (1: show only when there are atleast 2 tabs)
 vim.opt.termguicolors = true                    -- set term gui colors (most terminals support this)
 vim.opt.signcolumn = "yes"                      -- always show the sign column, otherwise it would shift the text each time
 -- vim.opt.colorcolumn = "120"                     -- Show column at <value> character (Useful to limit the width of code)
