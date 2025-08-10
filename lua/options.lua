@@ -9,7 +9,7 @@ vim.opt.cursorline = true                       -- highlight the current line
 vim.opt.tabstop = 4                             -- insert 4 spaces for a tab
 vim.opt.shiftwidth = 4                          -- the number of spaces inserted for each indentation
 vim.opt.expandtab = true                        -- convert tabs to spaces
-vim.opt.smartindent = false                     -- this causes indentation in files that shouldn't have indentation like in .txt, .l
+vim.opt.smartindent = false                     -- this causes indentation in files that shouldn't have indentation like in .txt
 
 -- =============== Search =============
 vim.opt.hlsearch = true                         -- highlight all matches on previous search pattern
@@ -53,3 +53,11 @@ vim.opt.termguicolors = true                    -- set term gui colors (most ter
 vim.opt.signcolumn = "yes"                      -- always show the sign column, otherwise it would shift the text each time
 -- vim.opt.colorcolumn = "120"                     -- Show column at <value> character (Useful to limit the width of code)
 -- vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
+vim.opt.list = true                             -- Enable special characters
+vim.opt.listchars = {
+    -- space = '·',                                 -- Display spaces as middle dots
+    tab = '▶ ',                                 -- Display tabs as a right-pointing triangle followed by a space
+    eol = '↲',                                  -- Display end-of-line characters as a return arrow
+    trail = '-',                                -- Display trailing spaces as middle dots
+    nbsp = '␣'
+}
