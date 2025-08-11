@@ -1,5 +1,9 @@
-local function OnLineEnter()
-    local symbols = vim.b.buffer_symbols
+-- Reuse the buffer instead of creating a new one each time
+local ctags_buffer = nil
+local ctags_window = nil
+
+local function OnLineEnter(buffer_symbols, parent_window)
+    local symbols = buffer_symbols
     if not symbols then
         vim.api.nvim_echo({{"Symbol list is not available in this buffer", "ErrorMsg"}}, false, {})
         return
@@ -13,8 +17,10 @@ local function OnLineEnter()
         return
     end
 
-    -- Close the symbol buffer
-    vim.cmd.q() -- :q
+    -- No need to close we'll jump to parent window
+    -- vim.cmd.q() -- :q
+
+    vim.api.nvim_set_current_win(parent_window)
 
     -- Jump to the symbol using tag
     vim.cmd.tag(symbols[index]) -- :tag symbol_name
@@ -22,7 +28,7 @@ end
 
 function ShowFileSymbols()
     local curr_file = vim.fn.shellescape(vim.fn.expand("%:p"))
-    local cmd = "ctags -x --sort=no " .. curr_file
+    local cmd = "ctags -x --c-kinds=fst --sort=no " .. curr_file -- f: function, s: struct, t: typedef
     local cmd_output = vim.fn.system(cmd)
 
     if cmd_output == "" then
@@ -34,11 +40,11 @@ function ShowFileSymbols()
     local symbol_names = {}
     local display_lines = {}
 
-    for _, line in ipairs(lines) do
+    for idx, line in ipairs(lines) do
         local cols = vim.split(line, "%s+")
-        if #cols >= 2 then
-            table.insert(symbol_names, cols[1])
-            table.insert(display_lines, string.format("%-40s : %15s", cols[1], cols[2]))
+        if cols[1] and cols[2] then
+            symbol_names[idx] = cols[1]
+            display_lines[idx] = string.format("%-40s : %15s", cols[1], cols[2])
         end
     end
 
@@ -47,29 +53,45 @@ function ShowFileSymbols()
         return
     end
 
-    -- Open vertical split
-    local width = math.floor(vim.api.nvim_win_get_width(0) / 3)
-    vim.cmd.vnew() -- :vnew
-    vim.cmd("vertical resize " .. width)
+    local parent_window = vim.api.nvim_get_current_win()
 
-    -- Set buffer-local options
-    vim.bo.buftype = "nofile"
-    vim.bo.swapfile = false
-    vim.bo.filetype = "symbols"
-    vim.bo.bufhidden = "wipe"
-    vim.bo.modifiable = true
-    -- vim.bo.number = false
+    local width = math.floor(vim.api.nvim_win_get_width(parent_window) / 3)
+
+    -- If buffer is not present already -> Create a new buffer, otherwise reuse
+    if not (ctags_buffer and vim.api.nvim_buf_is_valid(ctags_buffer)) then
+        ctags_buffer = vim.api.nvim_create_buf(true, true)
+    else
+        vim.bo[ctags_buffer].modifiable = true -- If reusing, allow modify
+    end
+
+    -- If window is not present already -> Create a new window, otherwise reuse
+    if not (ctags_window and vim.api.nvim_win_is_valid(ctags_window)) then
+        vim.cmd.vsplit()
+        ctags_window = vim.api.nvim_get_current_win()
+        vim.cmd("vertical resize " .. width) -- Resize only when new window is created
+    end
+
+    vim.api.nvim_win_set_buf(ctags_window, ctags_buffer)   -- set buffer in the new vertical window
+
+    -- Set buffer options for this particular buffer
+    -- vim.bo[ctags_buffer].buftype = "nofile"
+    vim.bo[ctags_buffer].swapfile = false
+    vim.bo[ctags_buffer].filetype = "symbols"
+    vim.bo[ctags_buffer].bufhidden = "wipe"
+
+    -- vim.bo.number = false 
+    -- Doesn't work: Why ? Because number option is window local, not buffer local (you can replace the content of the window with any buffer, it won't impact number)
+
+    vim.api.nvim_set_option_value("number", false, { win = ctags_window }) -- Pure API call, Works in Lua configs and also from external RPC clients (e.g., Neovide, VSCode Neovim).
+    vim.wo[ctags_window].relativenumber = false    -- Simpler way to change window options
 
     -- Set lines
-    vim.api.nvim_buf_set_lines(0, 0, -1, false, display_lines)
+    vim.api.nvim_buf_set_lines(ctags_buffer, 0, -1, false, display_lines)
     -- First argument is buf_num, 0 means current buffer
-    vim.bo.modifiable = false
+    vim.bo[ctags_buffer].modifiable = false
 
-    -- Store symbols in buffer variable
-    vim.b.buffer_symbols = symbol_names
-
-    -- Bind <CR> to symbol jump
+    -- Bind <CR> to symbol jump but only in this buffer, so even if someone changes buffer then this keybind shouldn't impact it
     vim.keymap.set("n", "<CR>", function()
-        OnLineEnter()
-    end, { buffer = buf, silent = true })
+        OnLineEnter(symbol_names, parent_window)
+    end, { buffer = ctags_buffer, silent = true })
 end
