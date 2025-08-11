@@ -3,6 +3,7 @@ require("keymaps")
 require("autocmds")
 require("usercmds")
 require("ctags-symbols")
+require("float-terminal")
 
 -- Plugins need leader key, hence set it beforehand
 require("plugins")
