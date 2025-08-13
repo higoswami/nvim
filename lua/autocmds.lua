@@ -40,3 +40,13 @@ vim.api.nvim_create_autocmd("FileType", {
     group = user_group,
 })
 
+-- Show column at <value> character, but only in modifiable buffers
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function()
+        -- This will stop this from showing up in help, terminal, nofile, ..
+        if vim.bo.modifiable and vim.bo.buftype == "" then
+            vim.opt_local.colorcolumn = "150"
+        end
+    end
+
+})
