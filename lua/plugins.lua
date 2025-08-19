@@ -7,7 +7,8 @@ vim.pack.add({
     {src = "https://github.com/echasnovski/mini.files.git"},
     {src = "https://github.com/echasnovski/mini.pick.git"},
     {src = "https://github.com/lewis6991/gitsigns.nvim.git"},
-    {src = 'https://github.com/dhananjaylatkar/cscope_maps.nvim.git', version = 'main'},
+    {src = "https://github.com/dhananjaylatkar/cscope_maps.nvim.git", version = "main"},
+
     {src = "https://github.com/nvim-treesitter/nvim-treesitter.git", version = "master"}, -- All future updates will be on main branch
     {src = "https://github.com/nvim-treesitter/nvim-treesitter-context.git"},
 })
