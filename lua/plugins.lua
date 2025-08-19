@@ -9,6 +9,7 @@ vim.pack.add({
     {src = "https://github.com/lewis6991/gitsigns.nvim.git"},
     {src = 'https://github.com/dhananjaylatkar/cscope_maps.nvim.git', version = 'main'},
     {src = "https://github.com/nvim-treesitter/nvim-treesitter.git", version = "master"}, -- All future updates will be on main branch
+    {src = "https://github.com/nvim-treesitter/nvim-treesitter-context.git"},
 })
 
 -- Notes:
@@ -213,3 +214,8 @@ require("nvim-treesitter.configs").setup({
 --  Available events to hook into
 --  • PackChangedPre - before trying to change plugin's state.
 --  • PackChanged - after plugin's state has changed. (We can use this for this Automation)
+
+
+
+-- ==== Treesitter-context ====
+require("treesitter-context")
