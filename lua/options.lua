@@ -41,7 +41,7 @@ vim.opt.pumheight = 10                          -- pop up menu height
 vim.opt.swapfile = false                        -- creates a swapfile
 vim.opt.timeoutlen = 1000                       -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.updatetime = 300                        -- faster completion (4000ms default)
-vim.opt.writebackup = false                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+vim.opt.writebackup = false                     -- if a file is being edited by another program, it is not allowed to be edited
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 8
 

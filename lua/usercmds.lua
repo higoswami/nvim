@@ -7,7 +7,7 @@ vim.api.nvim_create_user_command(
         local output = vim.fn.system(cmd)
         vim.notify(output)
     end, 
-    {}
+    { desc = "Show Project git branch" }
 )
 
 -- Print the current file Path and Copy it in the clipboard --
@@ -18,5 +18,5 @@ vim.api.nvim_create_user_command(
         vim.fn.setreg("+", path) -- Save path in register
         print("file:", path)
     end,
-    {}
+    { desc = "Copy Current File Path" }
 )

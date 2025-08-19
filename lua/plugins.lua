@@ -9,6 +9,14 @@ vim.pack.add({
     {src = 'https://github.com/dhananjaylatkar/cscope_maps.nvim.git', version = 'main'},
 })
 
+-- Notes:
+-- In Lua, require() is cached, so even if you call it multiple times (in the same Neovim session), it won’t reload or run the module again.
+
+-- ================== Load and Configure the Plugin  ============================ 
+-- When you use setup(), you may override the defaults based on how setup() is written in Plugin
+
+
+
 local function find_workspace_cscope_out()
     local fullpath = vim.fn.expand("%:p")
     local workspace_path = nil
@@ -30,17 +38,23 @@ local function find_workspace_cscope_out()
     return workspace_cscope_out
 end
 
--- ================== Load and Configure the Plugin at Startup (not Lazy loaded) ============================ 
--- When you use setup(), you may override the defaults based on how setup() is written in Plugin
-
 -- ==== cscope_maps.nvim ====
-require("cscope_maps").setup({
-    cscope = {
-        db_file = { "./cscope.out", find_workspace_cscope_out() },
-        -- "true" does not open picker for single result, just JUMP
-        skip_picker_for_single_result = true,
-    }
-})
+-- We don't want to load it automatically for all the files
+vim.api.nvim_create_user_command(
+    "CscopeLoad",
+    function()
+        require("cscope_maps").setup({
+            cscope = {
+                db_file = { "./cscope.out", find_workspace_cscope_out() },
+                -- "true" does not open picker for single result, just JUMP
+                skip_picker_for_single_result = true,
+            }
+        })
+        vim.keymap.set("n", "<leader>ct", ":lua ShowFileSymbols()<CR>", opts) -- To override cscope keymap (NOTE: Need a better solution)
+    end,
+    { desc = "Start Cscope" }
+)
+
 
 -- ==== flash.nvim ====
 require("flash").setup()
@@ -63,12 +77,13 @@ vim.keymap.set(
 
 -- ===== gitsigns.nvim =========
 require("gitsigns").setup( {
+    -- on_attach : runs only where the plugin is active (i.e. buffers inside a Git Repo)
     on_attach = function(bufnr)
         local gitsigns = require('gitsigns')
 
         local function map(mode, l, r, opts)
             opts = opts or {}
-            opts.buffer = bufnr
+            opts.buffer = bufnr -- Keymaps are buffer local
             vim.keymap.set(mode, l, r, opts)
         end
 
