@@ -7,7 +7,8 @@ vim.g.mapleader = vim.keycode("<space>")
 local opts = { noremap = true, silent = true }
 -- silent=true won't show commands mapped to keybindings
 
-vim.keymap.set("n", "gs", ":tag <C-R><C-W><CR>", { noremap = true, silent = false, desc = "Show symbol under cursor" })
+-- tjump will show the tags list (if there are multiple tags with the same name), while :tag jumps to the first matching tag
+vim.keymap.set("n", "gs", ":tjump <C-R><C-W><CR>", { noremap = true, silent = false, desc = "Show symbol under cursor" })
 
 -- Keep selection after indenting in visual mode
 vim.keymap.set("x", "<", "<gv", opts)
