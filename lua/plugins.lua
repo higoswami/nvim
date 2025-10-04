@@ -1,11 +1,11 @@
 -- ========================== Plugins ====================
--- Plugins are downloaded at : /home/hgoswami/.local/share/nvim/site/pack/core/opt
+-- Plugins are downloaded at : /home/$USER/.local/share/nvim/site/pack/core/opt
 vim.pack.add({
     {src = "https://github.com/scottmckendry/cyberdream.nvim.git"},
     {src = "https://github.com/folke/which-key.nvim.git"},
     {src = "https://github.com/folke/flash.nvim.git"},
-    {src = "https://github.com/echasnovski/mini.files.git"},
-    {src = "https://github.com/echasnovski/mini.pick.git"},
+    {src = "https://github.com/nvim-mini/mini.files.git"},
+    {src = "https://github.com/nvim-mini/mini.pick.git"},
     {src = "https://github.com/lewis6991/gitsigns.nvim.git"},
     {src = "https://github.com/dhananjaylatkar/cscope_maps.nvim.git", version = "main"},
 
