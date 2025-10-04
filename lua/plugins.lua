@@ -8,9 +8,9 @@ vim.pack.add({
     {src = "https://github.com/nvim-mini/mini.pick.git"},
     {src = "https://github.com/lewis6991/gitsigns.nvim.git"},
     {src = "https://github.com/dhananjaylatkar/cscope_maps.nvim.git", version = "main"},
-
     {src = "https://github.com/nvim-treesitter/nvim-treesitter.git", version = "master"}, -- All future updates will be on main branch
     {src = "https://github.com/nvim-treesitter/nvim-treesitter-context.git"},
+    {src = "https://github.com/junegunn/vim-easy-align.git"},
 })
 
 -- Notes:
@@ -220,3 +220,17 @@ require("nvim-treesitter.configs").setup({
 
 -- ==== Treesitter-context ====
 require("treesitter-context")
+
+-- ==== vim-easy-align ====
+vim.g.easy_align_delimiters = {
+    -- Add (|) as align delimeter for C header files
+    [")"] = {
+        pattern = "[()]",
+        left_margin = 0,
+        right_margin = 0,
+        stick_to_left = 0,
+    },
+}
+
+-- Visual mode: select lines and press ga to start EasyAlign
+vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)', {silent = true}) -- group align the selected lines
