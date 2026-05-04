@@ -8,7 +8,7 @@ vim.pack.add({
     {src = "https://github.com/nvim-mini/mini.pick.git"},
     {src = "https://github.com/lewis6991/gitsigns.nvim.git"},
     {src = "https://github.com/dhananjaylatkar/cscope_maps.nvim.git", version = "main"},
-    {src = "https://github.com/nvim-treesitter/nvim-treesitter.git", version = "master"}, -- All future updates will be on main branch
+    {src = "https://github.com/nvim-treesitter/nvim-treesitter.git", version = "main"}, -- All future updates will be on main branch (for nvim v0.12 and later)
     {src = "https://github.com/nvim-treesitter/nvim-treesitter-context.git"},
     {src = "https://github.com/junegunn/vim-easy-align.git"},
 })
@@ -176,7 +176,7 @@ if ok then
 end
 
 -- ==== Treesitter =====
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter").setup({
     -- A list of parser names, or "all" (the listed parsers MUST always be installed)
     ensure_installed = { "cpp" }, --NOTE: If you get an error run :TSUpdate
     -- We don't need to install parsers which are pre-installed with neovim. 
@@ -210,7 +210,7 @@ require("nvim-treesitter.configs").setup({
     },
 })
 
--- When upgrading the nvim-treesitter plugin, you must make sure that all installed parsers are updated to the latest version via :TSUpdate
+-- NOTE: When upgrading the nvim-treesitter plugin, you must make sure that all installed parsers are updated to the latest version via :TSUpdate
 -- In Lazyvim we can automate this using :  build = ":TSUpdate", but vim.pack provides us events to hooks into
 --  Available events to hook into
 --  • PackChangedPre - before trying to change plugin's state.
