@@ -15,6 +15,7 @@ vim.pack.add({
     {src = "https://github.com/nvim-treesitter/nvim-treesitter-context.git"},
     {src = "https://github.com/junegunn/vim-easy-align.git"},
     {src = "https://github.com/lukas-reineke/indent-blankline.nvim.git"},
+    {src = "https://github.com/MeanderingProgrammer/render-markdown.nvim"},
 })
 
 -- Notes:

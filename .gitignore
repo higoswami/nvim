@@ -1,0 +1,2 @@
+# Local, machine/company-specific overrides — never push these publicly
+lua/profiles/work-local.lua

@@ -9,8 +9,12 @@ local function find_workspace_cscope_out()
 
     if fullpath:match("/waverouter/") then
         workspace_path = fullpath:match("(.*/waverouter)")
-    elseif fullpath:match("/waverouter%-2/") then
+    elseif fullpath:match("/waverouter%-2/") then             -- In Lua patterns, the escape character is %, not \ like in most regex engines.
         workspace_path = fullpath:match("(.*/waverouter%-2)")
+    elseif fullpath:match("/waverouter%-3/") then
+        workspace_path = fullpath:match("(.*/waverouter%-3)")
+    elseif fullpath:match("/valimar/") then
+        workspace_path = fullpath:match("(.*/valimar)")
     else
         vim.api.nvim_echo(
             { { "No matching Workspace found in path for cscope: " .. fullpath, "ErrorMsg" } }, 
@@ -36,6 +40,7 @@ vim.api.nvim_create_user_command(
                 skip_picker_for_single_result = true,
             }
         })
+        vim.keymap.set("n", "<leader>cc", ":CsStackView open down <C-R><C-W>", { desc = "Open cscope stack view for symbol under cursor" })
         vim.keymap.set("n", "<leader>ct", ":lua ShowFileSymbols()<CR>", { noremap = true, silent = true, desc = "Show ctags symbols for current file" }) -- To override cscope keymap (NOTE: Need a better solution)
     end,
     { desc = "Start Cscope" }

@@ -16,6 +16,7 @@ vim.pack.add({
     {src = "https://github.com/junegunn/vim-easy-align.git"},
     {src = "https://github.com/lukas-reineke/indent-blankline.nvim.git"},
     {src = "https://github.com/danymat/neogen.git"},
+    {src = "https://github.com/MeanderingProgrammer/render-markdown.nvim"},
 })
 
 -- Notes:
@@ -64,3 +65,9 @@ require("utils.git-helper")
 
 -- If you want to override the plugin keymaps add those keymaps after that plugin is loaded
 vim.keymap.set("n", "<leader>ct", ":lua ShowFileSymbols()<CR>", { noremap = true, silent = true, desc = "Show ctags symbols for current file" })
+
+-- ============================= Local / Private ============================
+-- lua/profiles/work-local.lua is gitignored — put anything here that shouldn't
+-- be pushed publicly (company names, copyright headers, internal paths, etc.)
+-- Silently does nothing if the file doesn't exist (e.g. on a fresh clone).
+pcall(require, "profiles.work-local")
