@@ -1,2 +1,8 @@
 # Local, machine/company-specific overrides — never push these publicly
 lua/profiles/work-local.lua
+
+# Plugin lockfile — each machine has a different set of installed plugins
+# (server/endeavouros/work profiles each vim.pack.add different plugins),
+# so a single shared lockfile would cause profile-irrelevant plugins to be
+# installed on every machine on :restart. See README.md for details.
+nvim-pack-lock.json
