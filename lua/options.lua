@@ -1,5 +1,5 @@
 -- vim.o can also used instead of vim.opt
-vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
+-- vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
 
 vim.opt.wrap = false                            -- display lines as one long line
 vim.opt.number = true                           -- set numbered lines

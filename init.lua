@@ -5,6 +5,9 @@ require("usercmds")
 require("ctags-symbols")
 require("float-terminal")
 
+-- Server specific
+require("clipboard-support")
+
 -- Plugins need leader key, hence set it beforehand
 require("plugins")
 require("colorscheme")
