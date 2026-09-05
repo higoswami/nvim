@@ -54,4 +54,4 @@ require("utils.ctags-symbols")
 
 
 -- If you want to override the plugin keymaps add those keymaps after that plugin is loaded
-vim.keymap.set("n", "<leader>ct", ":lua ShowFileSymbols()<CR>", opts)
+vim.keymap.set("n", "<leader>ct", ":lua ShowFileSymbols()<CR>", { noremap = true, silent = true, desc = "Show ctags symbols for current file" })

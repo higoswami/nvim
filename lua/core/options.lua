@@ -47,7 +47,7 @@ vim.opt.sidescrolloff = 8
 
 -- ================= UI ===============
 vim.opt.numberwidth = 4                         -- set number column width to 2 {default 4}
-vim.opt.showmode = true                         -- we don't need to see things like -- INSERT -- anymore (set to false)
+vim.opt.showmode = true                         -- show current mode (e.g. -- INSERT --) in the command line
 vim.opt.showtabline = 1                         -- (1: show only when there are atleast 2 tabs)
 vim.opt.termguicolors = true                    -- set term gui colors (most terminals support this)
 vim.opt.signcolumn = "yes"                      -- always show the sign column, otherwise it would shift the text each time

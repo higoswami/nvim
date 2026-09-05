@@ -36,7 +36,7 @@ vim.api.nvim_create_user_command(
                 skip_picker_for_single_result = true,
             }
         })
-        vim.keymap.set("n", "<leader>ct", ":lua ShowFileSymbols()<CR>", opts) -- To override cscope keymap (NOTE: Need a better solution)
+        vim.keymap.set("n", "<leader>ct", ":lua ShowFileSymbols()<CR>", { noremap = true, silent = true, desc = "Show ctags symbols for current file" }) -- To override cscope keymap (NOTE: Need a better solution)
     end,
     { desc = "Start Cscope" }
 )

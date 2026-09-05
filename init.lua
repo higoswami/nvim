@@ -23,8 +23,7 @@ require("core.usercmds")
 -- Set in ~/.bashrc or ~/.zshrc using : export NVIM_PROFILE="server"
 local profile = os.getenv("NVIM_PROFILE")
 
--- Automatic fallback if NVIM_PROFILE is not explicitly set:
--- If connected via SSH -> defaults to "server", otherwise -> "endeavouros"
+-- Automatic fallback if NVIM_PROFILE is not explicitly set: defaults to "minimal"
 if not profile or profile == "" then
     profile = "minimal"
 end
