@@ -3,7 +3,7 @@ local user_group = vim.api.nvim_create_augroup("UserConfig", {})
 -- Highlight on yank Autocmd --
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
-        vim.highlight.on_yank()
+        vim.hl.on_yank()
     end,
     group = user_group,
 })
