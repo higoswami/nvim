@@ -1,3 +1,6 @@
+-- ===================== Options ====================
+vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
+
 -- ========================== Plugins ====================
 -- Plugins are downloaded at : /home/$USER/.local/share/nvim/site/pack/core/opt
 vim.pack.add({
