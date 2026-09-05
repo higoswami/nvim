@@ -1,5 +1,5 @@
 -- vim.o can also used instead of vim.opt
-vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
+-- vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
 
 vim.opt.wrap = false                            -- display lines as one long line
 vim.opt.number = true                           -- set numbered lines
@@ -32,7 +32,7 @@ vim.opt.hidden = true                           -- Allows buffers to be hidden (
 vim.opt.autochdir = false                       -- Change vim directory on change file, buffer, window (default = false)
 vim.opt.path:append("**")                       -- include subdirectories in file search (affects :find)
 
-vim.opt.cmdheight = 2                           -- more space in the neovim command line for displaying messages
+vim.opt.cmdheight = 4                           -- more space in the neovim command line for displaying messages
 vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
 vim.opt.fileencoding = "utf-8"                  -- the encoding written to a file
