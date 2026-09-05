@@ -52,7 +52,7 @@ vim.opt.showtabline = 1                         -- (1: show only when there are 
 vim.opt.termguicolors = true                    -- set term gui colors (most terminals support this)
 vim.opt.signcolumn = "yes"                      -- always show the sign column, otherwise it would shift the text each time
 -- vim.opt.colorcolumn = "150"                     -- Show column at <value> character (Useful to limit the width of code)
-                                                   -- This is set in autocmds now
+                                                   -- Disabled: was also set in autocmds.lua, now commented out there too
 -- vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
 vim.opt.list = true                             -- Enable special characters
 vim.opt.listchars = {
