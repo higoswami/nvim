@@ -35,3 +35,4 @@ require("plugins.indent-blankline")
 -- ============================= Utilities ============================
 require("utils.float-terminal")
 require("utils.clipboard-osc52")
+require("utils.git-helper")

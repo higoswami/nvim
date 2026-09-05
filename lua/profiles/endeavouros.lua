@@ -55,6 +55,7 @@ require("plugins.indent-blankline")
 -- ============================= Utilities ============================
 require("utils.float-terminal")
 require("utils.ctags-symbols")
+require("utils.git-helper")
 
 
 -- If you want to override the plugin keymaps add those keymaps after that plugin is loaded
