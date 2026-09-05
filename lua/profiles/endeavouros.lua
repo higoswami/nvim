@@ -14,6 +14,7 @@ vim.pack.add({
     {src = "https://github.com/nvim-treesitter/nvim-treesitter.git", version = "main"}, -- All future updates will be on main branch (for nvim v0.12 and later)
     {src = "https://github.com/nvim-treesitter/nvim-treesitter-context.git"},
     {src = "https://github.com/junegunn/vim-easy-align.git"},
+    {src = "https://github.com/lukas-reineke/indent-blankline.nvim.git"},
 })
 
 -- Notes:
@@ -46,6 +47,9 @@ require("treesitter-context")  -- Not from plugins directory
 
 -- ==== vim-easy-align ====
 require("plugins.vim-easy-align")
+
+-- ==== indent-blankline.nvim ====
+require("plugins.indent-blankline")
 
 
 -- ============================= Utilities ============================
