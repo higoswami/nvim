@@ -20,3 +20,13 @@ vim.api.nvim_create_user_command(
     end,
     { desc = "Copy Current File Path" }
 )
+
+-- Set the current buffer to take up half of the total neovim width --
+vim.api.nvim_create_user_command(
+    "VerticalHalf",
+    function()
+        local cols = math.floor(vim.o.columns / 2)
+        vim.api.nvim_win_set_width(0, cols)
+    end,
+    { desc = "Set the current Buffer to Give Half of Total Neovim Width" }
+)
